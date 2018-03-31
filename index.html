@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		/*body {
+  background: -webkit-radial-gradient(rgb(248, 248, 248), rgb(129, 171, 212));
+  background: radial-gradient(rgb(248, 248, 248), rgb(129, 171, 212));
+}*/
+/*iframe{
+    bottom: 0; left: 0; top: 0; right: 0;
+    margin: auto;
+    position: absolute;
+}*/
+
+body {
+    margin: 0;            /* Reset default margin */
+}
+iframe {
+    display: block;       /* iframes are inline by default */
+    background: #000;
+    border: none;         /* Reset default border */
+    height: 100vh;        /* Viewport-relative units */
+    width: 100vw;
+}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		/*
+ Find channel ID from channel name - http://johnnythetank.github.io/youtube-channel-name-converter/
+*/
+
+var channelID = "UCqB7JAnF78vQ1kIcpqG8sTg";
+$.getJSON('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3D'+channelID, function(data) {
+   var link = data.items[0].link;
+   var id = link.substr(link.indexOf("=")+1);
+    $("#youtube_video").attr("src","https://youtube.com/embed/"+id + "?controls=0&showinfo=0&rel=0");
+});
+	</script>
+</head>
+<body>
+
+
+<iframe id="youtube_video"  frameborder="0" allowfullscreen></iframe>
+   
+
+
+</body>
+</html>
